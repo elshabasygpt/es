@@ -1,0 +1,49 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Production
+build/
+dist/
+
+# Environment
+.env
+.env*.local
+
+# Generated
+/src/generated/prisma
+
+# Misc
+.DS_Store
+Thumbs.db
+*.pem
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+
+# IDE
+.vscode/
+.idea/
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Local Debug/Scratch
+scratch/
+scratch_*.js
+*.txt
+*.log
+dev_output.txt
+dev_error.txt
+build_output.txt
+build_output2.txt
+
+deploy.zip

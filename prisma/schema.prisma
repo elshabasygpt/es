@@ -1,0 +1,507 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x", "rhel-openssl-3.0.x", "debian-openssl-1.1.x", "debian-openssl-3.0.x", "debian-openssl-1.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String        @id @default(cuid())
+  name          String?
+  email         String?       @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          String        @default("USER")
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  repClients    Client[]      @relation("RepClients")
+  repOrders       ClientOrder[]       @relation("RepOrders")
+  repPayments     ClientPayment[]     @relation("RepPayments")
+  repInteractions ClientInteraction[] @relation("RepInteractions")
+  webOrders       WebOrder[]
+  cart            Cart?
+  quotations      Quotation[]
+}
+
+model SiteSettings {
+  id                    String   @id @default(cuid())
+  siteNameAr            String   @default("مصنع السلام للزيوت النباتية")
+  siteNameEn            String   @default("Elsalam Vegetable Oils Factory")
+  siteDescriptionAr     String?
+  siteDescriptionEn     String?
+  contactEmail          String?
+  contactPhone          String?
+  addressAr             String?
+  addressEn             String?
+  facebookUrl           String?
+  twitterUrl            String?
+  instagramUrl          String?
+  linkedinUrl           String?
+  smtpHost              String?
+  smtpPort              Int?     @default(587)
+  smtpUser              String?
+  smtpPass              String?
+  smtpFrom              String?
+  smtpFromName          String?
+  smtpSecure            String?  @default("tls")
+  logoUrl               String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  googleAnalyticsId     String?
+  imapHost              String?
+  imapPass              String?
+  imapPort              Int?     @default(993)
+  imapSecure            String?  @default("tls")
+  imapUser              String?
+  invoiceNotesAr        String?
+  invoiceNotesEn        String?
+  invoiceShowLogo       Boolean  @default(true)
+  invoiceLogoUrl        String?
+  invoiceColor          String?  @default("#15803d")
+  invoiceCompanyDetails String?
+  invoiceLogoSize       Int?     @default(64)
+  invoiceSubtitle       String?  @default("Industrial High-Quality Oils & Fats")
+  invoiceWebsiteUrl     String?  @default("www.elsalamoils.com")
+  geminiApiKey          String?
+  stabilityApiKey       String?
+  huggingFaceApiKey     String?
+  imageAiProvider       String?  @default("pollinations")
+  textAiProvider        String?  @default("gemini")
+  googleDriveFolderId   String?
+}
+
+model PageContent {
+  id        String   @id @default(cuid())
+  pageSlug  String   @unique
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  version   Int      @default(1)
+}
+
+model PageContentHistory {
+  id       String   @id @default(cuid())
+  pageSlug String
+  content  String
+  savedAt  DateTime @default(now())
+  label    String   @default("")
+
+  @@index([pageSlug, savedAt])
+}
+
+model Category {
+  id        Int       @id @default(autoincrement())
+  name_ar   String
+  name_en   String
+  slug      String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  imageUrl  String?
+  sortOrder Int       @default(0)
+  products  Product[]
+}
+
+model Product {
+  id                   Int                    @id @default(autoincrement())
+  slug                 String                 @unique
+  name_ar              String
+  name_en              String
+  short_description_ar String?
+  short_description_en String?
+  description_ar       String?
+  description_en       String?
+  long_description_ar  String?
+  long_description_en  String?
+  featured_image       String?
+  price                Float?
+  price_unit_ar        String?
+  price_unit_en        String?
+  is_exportable        Boolean                @default(false)
+  is_featured          Boolean                @default(false)
+  icon                 String?
+  gradient_from        String?
+  gradient_to          String?
+  categoryId           Int?
+  activePromotionId    Int?                   @unique
+  pdf_datasheet        String?
+  meta_title           String?
+  meta_description     String?
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+  stock                Int                    @default(100)
+  orderItems           OrderItem[]
+  category             Category?              @relation(fields: [categoryId], references: [id])
+  certifications       ProductCertification[]
+  features             ProductFeature[]
+  images               ProductImage[]
+  packagings           ProductPackaging[]
+  specs                ProductSpec[]
+  promotions           Promotion[]
+  technical_specs      TechnicalSpec[]
+  webOrderItems        WebOrderItem[]
+  cartItems            CartItem[]
+  quotationItems       QuotationItem[]
+
+  @@index([categoryId])
+  @@index([is_featured])
+  @@index([stock])
+  @@index([createdAt])
+  @@index([name_ar])
+}
+
+model ProductFeature {
+  id         Int     @id @default(autoincrement())
+  productId  Int
+  feature_ar String
+  feature_en String
+  product    Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model ProductCertification {
+  id        Int     @id @default(autoincrement())
+  productId Int
+  name      String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model ProductSpec {
+  id        Int     @id @default(autoincrement())
+  productId Int
+  label_ar  String
+  label_en  String
+  value_ar  String
+  value_en  String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model TechnicalSpec {
+  id          Int     @id @default(autoincrement())
+  productId   Int
+  property_ar String
+  property_en String
+  value_ar    String
+  value_en    String
+  unit_ar     String?
+  unit_en     String?
+  product     Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model ProductImage {
+  id        Int     @id @default(autoincrement())
+  productId Int
+  url       String
+  alt_text  String?
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model ProductPackaging {
+  id        Int     @id @default(autoincrement())
+  productId Int
+  size_ar   String
+  size_en   String
+  price     Float?
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Promotion {
+  id             Int       @id @default(autoincrement())
+  productId      Int?
+  title_ar       String
+  title_en       String
+  description_ar String?
+  description_en String?
+  discount_type  String
+  discount_value Float
+  original_price Float?
+  promo_price    Float?
+  badge_ar       String?
+  badge_en       String?
+  featured_image String?
+  starts_at      DateTime?
+  ends_at        DateTime
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  isActive       Boolean   @default(true)
+  product        Product?  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model News {
+  id               Int       @id @default(autoincrement())
+  slug             String    @unique
+  title_ar         String
+  title_en         String
+  excerpt_ar       String?
+  excerpt_en       String?
+  content_ar       String?
+  content_en       String?
+  category         String    @default("news")
+  tags             String?
+  featured_image   String?
+  image_alt        String?
+  meta_title       String?
+  meta_description String?
+  is_featured      Boolean   @default(false)
+  is_published     Boolean   @default(false)
+  published_at     DateTime?
+  scheduled_at     DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  gallery          String[]  @default([])
+}
+
+model Message {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String
+  phone     String?
+  company   String?
+  subject   String
+  body      String
+  type      String    @default("inquiry")
+  status    String    @default("new")
+  priority  String    @default("normal")
+  reply     String?
+  repliedAt DateTime?
+  repliedBy String?
+  notes     String?
+  isStarred Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Client {
+  id                 Int             @id @default(autoincrement())
+  name               String
+  company            String?
+  industry           String?
+  notes              String?
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+  lat                Float?
+  lng                Float?
+  governorate        String?
+  locationUrl        String?
+  mainPhone          String?
+  repId              String?
+  secondaryPhone     String?
+  storeImage         String?
+  storeType          String?
+  creditLimit        Float           @default(0)
+  outstandingBalance Float           @default(0)
+  status             String          @default("LEAD")
+  rep                User?           @relation("RepClients", fields: [repId], references: [id])
+  contacts           ClientContact[]
+  orders             ClientOrder[]
+  payments           ClientPayment[]
+  interactions       ClientInteraction[]
+
+  @@index([repId])
+  @@index([status])
+  @@index([createdAt])
+  @@index([name])
+}
+
+model ClientContact {
+  id         Int     @id @default(autoincrement())
+  clientId   Int
+  personName String?
+  department String
+  email      String
+  phone      String?
+  client     Client  @relation(fields: [clientId], references: [id], onDelete: Cascade)
+}
+
+model ClientOrder {
+  id              Int         @id @default(autoincrement())
+  clientId        Int
+  repId           String
+  status          String      @default("NEW")
+  totalAmount     Float       @default(0)
+  notes           String?
+  rejectionReason String?
+  invoiceFile     String?
+  expectedDate    DateTime?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  client          Client      @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  rep             User        @relation("RepOrders", fields: [repId], references: [id])
+  items           OrderItem[]
+}
+
+model OrderItem {
+  id             Int         @id @default(autoincrement())
+  orderId        Int
+  productId      Int?
+  customItemName String?
+  quantity       Int
+  unitPrice      Float       @default(0)
+  subtotal       Float       @default(0)
+  order          ClientOrder @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product        Product?    @relation(fields: [productId], references: [id])
+}
+
+model WebOrder {
+  id              Int            @id @default(autoincrement())
+  customerName    String
+  customerEmail   String?
+  customerPhone   String
+  governorate     String
+  city            String?
+  shippingAddress String
+  totalAmount     Float          @default(0)
+  status          String         @default("PENDING")
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  paymentMethod   String         @default("COD")
+  shippingFee     Float          @default(0)
+  userId          String?
+  discountAmount  Float          @default(0)
+  promoCode       String?
+  notes           String?
+  isQuotation     Boolean        @default(false)
+  user            User?          @relation(fields: [userId], references: [id])
+  items           WebOrderItem[]
+
+  @@index([status])
+  @@index([createdAt])
+  @@index([userId])
+  @@index([isQuotation])
+}
+
+model WebOrderItem {
+  id        Int      @id @default(autoincrement())
+  orderId   Int
+  productId Int
+  quantity  Int
+  unitPrice Float    @default(0)
+  subtotal  Float    @default(0)
+  order     WebOrder @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id])
+}
+
+model ShippingZone {
+  id        Int      @id @default(autoincrement())
+  name_ar   String   @unique
+  name_en   String   @unique
+  fee       Float    @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PromoCode {
+  id            Int       @id @default(autoincrement())
+  code          String    @unique
+  type          String
+  value         Float
+  minOrderValue Float?
+  maxUses       Int?
+  usedCount     Int       @default(0)
+  isActive      Boolean   @default(true)
+  expiresAt     DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([isActive])
+}
+
+model OutboxEvent {
+  id        String   @id @default(cuid())
+  type      String   // e.g., "SEND_EMAIL", "UPDATE_INVENTORY"
+  payload   String   // JSON stringified payload
+  status    String   @default("PENDING") // PENDING, PROCESSED, FAILED
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Cart {
+  id        String     @id @default(cuid())
+  userId    String     @unique
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items     CartItem[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model CartItem {
+  id            String   @id @default(cuid())
+  cartId        String
+  cart          Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  productId     Int
+  product       Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity      Int
+  weightVariant String   @default("") // Ensures unique constraint works safely
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([cartId, productId, weightVariant])
+}
+
+model Quotation {
+  id             String          @id @default(cuid())
+  userId         String
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status         String          @default("PENDING") // PENDING, REVIEWING, APPROVED, REJECTED
+  discountAmount Float           @default(0)
+  totalAmount    Float           @default(0)
+  adminNotes     String?
+  clientNotes    String?
+  items          QuotationItem[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  @@index([userId])
+  @@index([status])
+}
+
+model QuotationItem {
+  id            String    @id @default(cuid())
+  quotationId   String
+  quotation     Quotation @relation(fields: [quotationId], references: [id], onDelete: Cascade)
+  productId     Int
+  product       Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity      Int
+  price         Float     // Snapshot of the requested price
+  weightVariant String    @default("")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([quotationId])
+}
+model ClientPayment {
+  id          Int      @id @default(autoincrement())
+  clientId    Int
+  client      Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  amount      Float
+  paymentDate DateTime @default(now())
+  method      String   @default("CASH") // CASH, TRANSFER, CHEQUE
+  notes       String?
+  repId       String?
+  rep         User?    @relation("RepPayments", fields: [repId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([clientId])
+  @@index([repId])
+}
+
+model ClientInteraction {
+  id          Int      @id @default(autoincrement())
+  clientId    Int
+  client      Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  type        String   @default("VISIT") // VISIT, CALL, MEETING, EMAIL
+  notes       String
+  date        DateTime @default(now())
+  nextFollowUp DateTime?
+  repId       String?
+  rep         User?    @relation("RepInteractions", fields: [repId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([clientId])
+  @@index([repId])
+}

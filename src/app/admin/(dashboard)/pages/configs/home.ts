@@ -1,0 +1,576 @@
+import { SectionConfig, FieldConfig } from '../types';
+
+export const homeConfig: SectionConfig[] = [
+        // ── 1. Hero Slides ──
+        {
+            id: "heroSlides",
+            title: "السلايدر الرئيسي (Hero Slides)",
+            emoji: "🎞",
+            description: "الشرائح والعناوين الرئيسية أعلى الصفحة — يمكنك إضافة/حذف شرائح",
+            fields: [
+                {
+                    key: "slides",
+                    labelAr: "شريحة",
+                    labelEn: "Slide",
+                    type: "list",
+                    bilingual: false,
+                    listFields: [
+                        { key: "tabName", labelAr: "اسم التبويب", labelEn: "Tab Name", type: "text", bilingual: true, placeholder: "مثال: الجودة والإنتاج" },
+                        { key: "badge", labelAr: "الشارة", labelEn: "Badge", type: "text", bilingual: true, placeholder: "مثال: أكثر من 25 عاماً" },
+                        { key: "titleLine1", labelAr: "السطر الأول من العنوان", labelEn: "Title Line 1", type: "text", bilingual: true, placeholder: "الريادة في عصر" },
+                        { key: "titleLine2", labelAr: "السطر الثاني من العنوان", labelEn: "Title Line 2", type: "text", bilingual: true, placeholder: "الزيوت النباتية" },
+                        { key: "subtitle", labelAr: "النص التوضيحي", labelEn: "Subtitle", type: "textarea", bilingual: true },
+                        { key: "ctaPrimary", labelAr: "نص الزر الأساسي", labelEn: "Primary Button", type: "text", bilingual: true, placeholder: "اكتشف منتجاتنا" },
+                        { key: "ctaPrimaryLink", labelAr: "رابط الزر الأساسي", labelEn: "Primary Link", type: "url", bilingual: false, placeholder: "/products" },
+                        { key: "ctaSecondary", labelAr: "نص الزر الثانوي", labelEn: "Secondary Button", type: "text", bilingual: true, placeholder: "شراكات التصدير" },
+                        { key: "ctaSecondaryLink", labelAr: "رابط الزر الثانوي", labelEn: "Secondary Link", type: "url", bilingual: false, placeholder: "/export" },
+                        { key: "image", labelAr: "صورة/خلفية الشريحة", labelEn: "Slide Image URL", type: "url", bilingual: false, placeholder: "/images/hero-bg.png" },
+                    ],
+                },
+            ],
+        },
+
+        // ── 1b. Hero Design Controls ──
+        {
+            id: "heroDesign",
+            title: "🎨 تصميم الهيرو — الخط والألوان والتخطيط",
+            emoji: "🎨",
+            description: "تحكم كامل في حجم الخط ووزنه وألوان النصوص والحشو وتأثير الزجاج وطبقة التعتيم",
+            fields: [
+                // ─── Typography ───────────────────────────────
+                {
+                    key: "titleFontSize",
+                    labelAr: "حجم العنوان الرئيسي (H1)",
+                    labelEn: "Title Font Size",
+                    type: "select",
+                    bilingual: false,
+                    options: [
+                        { label: "صغير — 36px", value: "text-4xl" },
+                        { label: "متوسط — 48px", value: "text-5xl" },
+                        { label: "كبير — 60px", value: "text-6xl" },
+                        { label: "كبير جداً — 72px", value: "text-7xl" },
+                        { label: "ضخم — 96px", value: "text-8xl" },
+                    ],
+                },
+                {
+                    key: "titleFontWeight",
+                    labelAr: "وزن خط العنوان",
+                    labelEn: "Title Font Weight",
+                    type: "select",
+                    bilingual: false,
+                    options: [
+                        { label: "Bold (700)", value: "font-bold" },
+                        { label: "Extra Bold (800)", value: "font-extrabold" },
+                        { label: "Black (900)", value: "font-black" },
+                    ],
+                },
+                {
+                    key: "titleLineHeight",
+                    labelAr: "ارتفاع السطر (Line Height)",
+                    labelEn: "Line Height",
+                    type: "select",
+                    bilingual: false,
+                    options: [
+                        { label: "ضيق — 1.1", value: "leading-tight" },
+                        { label: "متقارب — 1.25", value: "leading-snug" },
+                        { label: "عادي — 1.5", value: "leading-normal" },
+                        { label: "واسع — 1.75", value: "leading-relaxed" },
+                    ],
+                },
+                {
+                    key: "subtitleFontSize",
+                    labelAr: "حجم خط العنوان الفرعي",
+                    labelEn: "Subtitle Font Size",
+                    type: "select",
+                    bilingual: false,
+                    options: [
+                        { label: "صغير — 14px", value: "text-sm" },
+                        { label: "عادي — 16px", value: "text-base" },
+                        { label: "متوسط — 18px", value: "text-lg" },
+                        { label: "كبير — 20px", value: "text-xl" },
+                        { label: "كبير جداً — 24px", value: "text-2xl" },
+                    ],
+                },
+                // ─── Colors ────────────────────────────────────
+                {
+                    key: "titleColor",
+                    labelAr: "لون العنوان الرئيسي (السطر الأول)",
+                    labelEn: "Title Color",
+                    type: "color",
+                    bilingual: false,
+                    placeholder: "#ffffff",
+                },
+                {
+                    key: "titleLine2Color",
+                    labelAr: "لون الكلمة المميزة (السطر الثاني)",
+                    labelEn: "Highlighted Title Color",
+                    type: "color",
+                    bilingual: false,
+                    placeholder: "#34d399",
+                },
+                {
+                    key: "subtitleColor",
+                    labelAr: "لون النص التوضيحي",
+                    labelEn: "Subtitle Color",
+                    type: "color",
+                    bilingual: false,
+                    placeholder: "#d1d5db",
+                },
+                // ─── Spacing ───────────────────────────────────
+                {
+                    key: "contentPaddingTop",
+                    labelAr: "الحشو العلوي للمحتوى",
+                    labelEn: "Content Padding Top",
+                    type: "range",
+                    bilingual: false,
+                    min: 20,
+                    max: 200,
+                    step: 4,
+                },
+                {
+                    key: "contentPaddingBottom",
+                    labelAr: "الحشو السفلي للمحتوى",
+                    labelEn: "Content Padding Bottom",
+                    type: "range",
+                    bilingual: false,
+                    min: 16,
+                    max: 160,
+                    step: 4,
+                },
+                {
+                    key: "cardPaddingX",
+                    labelAr: "الحشو الأفقي للبطاقة الداخلية",
+                    labelEn: "Card Padding X",
+                    type: "range",
+                    bilingual: false,
+                    min: 16,
+                    max: 80,
+                    step: 4,
+                },
+                {
+                    key: "cardPaddingY",
+                    labelAr: "الحشو العمودي للبطاقة الداخلية",
+                    labelEn: "Card Padding Y",
+                    type: "range",
+                    bilingual: false,
+                    min: 16,
+                    max: 80,
+                    step: 4,
+                },
+                // ─── Glassmorphism Card ────────────────────────
+                {
+                    key: "cardBgOpacity",
+                    labelAr: "شفافية خلفية البطاقة (0 = شفاف، 80 = شبه معتم)",
+                    labelEn: "Card Background Opacity",
+                    type: "range",
+                    bilingual: false,
+                    min: 0,
+                    max: 80,
+                    step: 5,
+                },
+                {
+                    key: "cardBlur",
+                    labelAr: "تأثير الضبابية (Blur)",
+                    labelEn: "Card Blur",
+                    type: "select",
+                    bilingual: false,
+                    options: [
+                        { label: "بدون ضباب", value: "backdrop-blur-none" },
+                        { label: "خفيف", value: "backdrop-blur-sm" },
+                        { label: "متوسط", value: "backdrop-blur-md" },
+                        { label: "قوي", value: "backdrop-blur-xl" },
+                        { label: "قوي جداً", value: "backdrop-blur-3xl" },
+                    ],
+                },
+                {
+                    key: "cardBorderEnabled",
+                    labelAr: "إظهار حدود البطاقة",
+                    labelEn: "Show Card Border",
+                    type: "toggle",
+                    bilingual: false,
+                },
+                {
+                    key: "cardRounded",
+                    labelAr: "انحناء حواف البطاقة",
+                    labelEn: "Card Corner Radius",
+                    type: "select",
+                    bilingual: false,
+                    options: [
+                        { label: "حاد", value: "rounded-xl" },
+                        { label: "متوسط", value: "rounded-2xl" },
+                        { label: "دائري كبير", value: "rounded-3xl" },
+                        { label: "كبسول", value: "rounded-[2rem]" },
+                    ],
+                },
+                // ─── Overlay ───────────────────────────────────
+                {
+                    key: "overlayOpacity",
+                    labelAr: "شدة تعتيم خلفية الصورة (0 = بدون، 95 = معتم جداً)",
+                    labelEn: "Background Overlay Opacity",
+                    type: "range",
+                    bilingual: false,
+                    min: 0,
+                    max: 95,
+                    step: 5,
+                },
+                // ─── Layout ─────────────────────────────────────
+                {
+                    key: "textAlign",
+                    labelAr: "محاذاة النص",
+                    labelEn: "Text Alignment",
+                    type: "select",
+                    bilingual: false,
+                    options: [
+                        { label: "يسار / بداية السطر", value: "text-start" },
+                        { label: "وسط", value: "text-center" },
+                    ],
+                },
+                {
+                    key: "cardMaxWidth",
+                    labelAr: "أقصى عرض للبطاقة",
+                    labelEn: "Card Max Width",
+                    type: "select",
+                    bilingual: false,
+                    options: [
+                        { label: "ضيق — 576px", value: "max-w-xl" },
+                        { label: "متوسط — 672px", value: "max-w-2xl" },
+                        { label: "واسع — 768px", value: "max-w-3xl" },
+                        { label: "أوسع — 896px", value: "max-w-4xl" },
+                        { label: "كامل العرض", value: "max-w-full" },
+                    ],
+                },
+            ],
+        },
+
+        {
+            id: "segments",
+            title: "قطاعات الأعمال المخصصة",
+            emoji: "🏢",
+            description: "تتحكم في قسم (نقدم حلول متخصصة لكل قطاع)",
+            fields: [
+                { key: "title", labelAr: "العنوان الرئيسي", labelEn: "Title", type: "text", bilingual: true, placeholder: "كيف يمكننا خدمتك؟" },
+                { key: "subtitle", labelAr: "الوصف الفرعي", labelEn: "Subtitle", type: "text", bilingual: true, placeholder: "نقدم حلولاً مخصصة لكل قطاع" },
+                {
+                    key: "items",
+                    labelAr: "قطاع",
+                    labelEn: "Segment",
+                    type: "list",
+                    bilingual: false,
+                    listFields: [
+                        { key: "title", labelAr: "عنوان القطاع", labelEn: "Segment Title", type: "text", bilingual: true, placeholder: "مصانع الأغذية" },
+                        { key: "desc", labelAr: "وصف القطاع", labelEn: "Description", type: "textarea", bilingual: true },
+                        { key: "cta", labelAr: "نص الزر", labelEn: "Button Text", type: "text", bilingual: true, placeholder: "طلب عرض سعر" },
+                        { key: "link", labelAr: "رابط الزر", labelEn: "Button Link", type: "text", bilingual: false, placeholder: "/b2b/quote" },
+                        { key: "image", labelAr: "صورة القطاع", labelEn: "Segment Image", type: "url", bilingual: false, placeholder: "/images/segment-1.jpg" },
+                    ],
+                },
+            ],
+        },
+
+        {
+            id: "stats",
+            title: "الإحصائيات والأرقام",
+            emoji: "📊",
+            description: "أرقام إنجازات المصنع (سنوات خبرة، طاقة إنتاجية، دول تصدير...)",
+            fields: [
+                {
+                    key: "items",
+                    labelAr: "إحصائية",
+                    labelEn: "Stat",
+                    type: "list",
+                    bilingual: false,
+                    listFields: [
+                        { key: "number", labelAr: "الرقم", labelEn: "Number", type: "text", bilingual: false, placeholder: "25+" },
+                        { key: "label", labelAr: "التسمية", labelEn: "Label", type: "text", bilingual: true, placeholder: "سنوات الخبرة" },
+                    ],
+                },
+            ],
+        },
+
+        // ── 3. Why Choose Us ──
+        {
+            id: "whyChooseUs",
+            title: "لماذا تختارنا",
+            emoji: "⭐",
+            description: "مميزات المصنع — 4 أسباب تجعلنا الخيار الأول",
+            fields: [
+                { key: "badge", labelAr: "شارة القسم", labelEn: "Section Badge", type: "text", bilingual: true, placeholder: "لماذا نحن؟" },
+                { key: "title", labelAr: "العنوان", labelEn: "Title", type: "text", bilingual: true, placeholder: "لماذا تختار" },
+                { key: "titleHighlight", labelAr: "الكلمة المميزة (مُلوّنة)", labelEn: "Highlighted Word", type: "text", bilingual: true, placeholder: "مصنع السلام" },
+                { key: "subtitle", labelAr: "الوصف", labelEn: "Subtitle", type: "textarea", bilingual: true },
+                {
+                    key: "reasons",
+                    labelAr: "ميزة",
+                    labelEn: "Reason",
+                    type: "list",
+                    bilingual: false,
+                    listFields: [
+                        { key: "title", labelAr: "عنوان الميزة", labelEn: "Title", type: "text", bilingual: true, placeholder: "طاقة إنتاجية ضخمة" },
+                        { key: "description", labelAr: "الوصف", labelEn: "Description", type: "textarea", bilingual: true },
+                    ],
+                },
+            ],
+        },
+
+
+        {
+            id: "featuredProducts",
+            title: "المنتجات المميزة",
+            emoji: "📦",
+            description: "المنتجات الرئيسية المعروضة على الصفحة الرئيسية",
+            fields: [
+                { key: "badge", labelAr: "شارة القسم", labelEn: "Badge", type: "text", bilingual: true, placeholder: "أفضل المنتجات" },
+                { key: "title", labelAr: "العنوان", labelEn: "Title", type: "text", bilingual: true },
+                { key: "subtitle", labelAr: "الوصف", labelEn: "Subtitle", type: "text", bilingual: true },
+                { key: "viewAll", labelAr: "نص زر عرض الكل", labelEn: "View All Text", type: "text", bilingual: true, placeholder: "عرض كل المنتجات" },
+                {
+                    key: "products",
+                    labelAr: "منتج",
+                    labelEn: "Product",
+                    type: "list",
+                    bilingual: false,
+                    listFields: [
+                        { key: "title", labelAr: "اسم المنتج", labelEn: "Product Name", type: "text", bilingual: true, placeholder: "زيت صويا مكرر" },
+                        { key: "subtitle", labelAr: "الاسم الإنجليزي", labelEn: "English Name", type: "text", bilingual: false, placeholder: "Refined Soybean Oil" },
+                        { key: "description", labelAr: "الوصف", labelEn: "Description", type: "textarea", bilingual: true },
+                        { key: "image", labelAr: "صورة المنتج", labelEn: "Product Image", type: "url", bilingual: false, placeholder: "/images/products/soy-oil.png" },
+                        { key: "slug", labelAr: "رابط المنتج (أو Slug)", labelEn: "Product Link/Slug", type: "text", bilingual: false, placeholder: "soybean-oil أو /products/soybean-oil" },
+                    ],
+                },
+            ],
+        },
+
+        // ── 6. Our Process (آلية الإنتاج) ──
+        {
+            id: "ourProcess",
+            title: "آلية الإنتاج والجودة",
+            emoji: "⚙️",
+            description: "خطوات الإنتاج من البذرة إلى المائدة",
+            fields: [
+                { key: "isVisible", labelAr: "عرض القسم", labelEn: "Show Section", type: "toggle", bilingual: false },
+                { key: "badge", labelAr: "شارة القسم", labelEn: "Badge", type: "text", bilingual: true, placeholder: "آلية الإنتاج والجودة" },
+                { key: "title", labelAr: "العنوان", labelEn: "Title", type: "text", bilingual: true, placeholder: "من البذرة إلى المائدة" },
+                { key: "subtitle", labelAr: "الوصف", labelEn: "Subtitle", type: "textarea", bilingual: true },
+                {
+                    key: "steps",
+                    labelAr: "خطوة",
+                    labelEn: "Step",
+                    type: "list",
+                    bilingual: false,
+                    listFields: [
+                        { key: "title", labelAr: "اسم الخطوة", labelEn: "Step Title", type: "text", bilingual: true, placeholder: "اختيار أفضل البذور" },
+                        { key: "description", labelAr: "الوصف", labelEn: "Description", type: "textarea", bilingual: true },
+                        { key: "image", labelAr: "صورة الخطوة", labelEn: "Step Image", type: "url", bilingual: false, placeholder: "/images/process/step-1.jpg" },
+                    ],
+                },
+            ],
+        },
+
+        // ── 7. Global Footprint (البصمة العالمية) ──
+        {
+            id: "globalFootprint",
+            title: "البصمة العالمية",
+            emoji: "🌍",
+            description: "خريطة التصدير ودول التواجد",
+            fields: [
+                { key: "title", labelAr: "العنوان", labelEn: "Title", type: "text", bilingual: true, placeholder: "بصمتنا العالمية" },
+                { key: "subtitle", labelAr: "الوصف", labelEn: "Subtitle", type: "textarea", bilingual: true },
+                { key: "image", labelAr: "صورة الخريطة / الخلفية", labelEn: "Map/Background Image", type: "url", bilingual: false, placeholder: "/images/placeholder.svg" },
+                { key: "stat1Value", labelAr: "رقم الإحصائية الأولى", labelEn: "Stat 1 Value", type: "text", bilingual: false, placeholder: "15+" },
+                { key: "stat1Label", labelAr: "اسم الإحصائية الأولى", labelEn: "Stat 1 Label", type: "text", bilingual: true, placeholder: "دولة تصدير" },
+                { key: "stat2Value", labelAr: "رقم الإحصائية الثانية", labelEn: "Stat 2 Value", type: "text", bilingual: false, placeholder: "20,000 MT" },
+                { key: "stat2Label", labelAr: "اسم الإحصائية الثانية", labelEn: "Stat 2 Label", type: "text", bilingual: true, placeholder: "حجم التصدير" },
+            ],
+        },
+
+        // ── 8. Sustainability (الاستدامة) ──
+        {
+            id: "sustainability",
+            title: "الاستدامة والمسؤولية البيئية",
+            emoji: "🌱",
+            description: "نصوص قسم الاستدامة وحماية البيئة وصورة القسم",
+            fields: [
+                { key: "title", labelAr: "العنوان", labelEn: "Title", type: "text", bilingual: true },
+                { key: "subtitle", labelAr: "الوصف", labelEn: "Subtitle", type: "textarea", bilingual: true },
+                { key: "image", labelAr: "الصورة الرئيسية", labelEn: "Main Image", type: "url", bilingual: false, placeholder: "/images/placeholder.svg" },
+            ],
+        },
+
+        // ── 9. Virtual Tour (جولة افتراضية) ──
+        {
+            id: "virtualTour",
+            title: "الجولة الافتراضية",
+            emoji: "🎥",
+            description: "قسم الفيديو أو الجولة الافتراضية في المصنع",
+            fields: [
+                { key: "isVisible", labelAr: "عرض القسم", labelEn: "Show Section", type: "toggle", bilingual: false },
+                { key: "title", labelAr: "العنوان", labelEn: "Title", type: "text", bilingual: true },
+                { key: "subtitle", labelAr: "الوصف", labelEn: "Subtitle", type: "textarea", bilingual: true },
+                { key: "image", labelAr: "صورة الغلاف (Thumbnail)", labelEn: "Cover Image", type: "url", bilingual: false, placeholder: "/images/factory-interior.jpg" },
+                { key: "videoUrl", labelAr: "رابط الفيديو", labelEn: "Video URL", type: "url", bilingual: false, placeholder: "https://youtube.com/..." },
+            ],
+        },
+
+        // ── 10. Packaging Guide ──
+        {
+            id: "packaging",
+            title: "دليل التعبئة والتغليف",
+            emoji: "📦",
+            description: "أنواع العبوات المتاحة",
+            fields: [
+                { key: "badge", labelAr: "شارة القسم", labelEn: "Badge", type: "text", bilingual: true, placeholder: "خيارات التعبئة" },
+                { key: "title", labelAr: "العنوان", labelEn: "Title", type: "text", bilingual: true },
+                { key: "subtitle", labelAr: "الوصف", labelEn: "Subtitle", type: "textarea", bilingual: true },
+                {
+                    key: "types",
+                    labelAr: "نوع عبوة",
+                    labelEn: "Package Type",
+                    type: "list",
+                    bilingual: false,
+                    listFields: [
+                        { key: "title", labelAr: "اسم العبوة", labelEn: "Package Name", type: "text", bilingual: true, placeholder: "عبوات بلاستيكية (PET)" },
+                        { key: "sizes", labelAr: "الأحجام", labelEn: "Sizes", type: "text", bilingual: true, placeholder: "1، 2، 5 لتر" },
+                        { key: "description", labelAr: "الوصف", labelEn: "Description", type: "textarea", bilingual: true },
+                        { key: "image", labelAr: "صورة العبوة", labelEn: "Package Image", type: "url", bilingual: false, placeholder: "/images/packaging/pet.png" },
+                    ],
+                },
+            ],
+        },
+
+        // ── 11. Certifications ──
+        {
+            id: "certifications",
+            title: "شهادات الجودة والاعتمادات",
+            emoji: "🏅",
+            description: "الشهادات الدولية التي حصل عليها المصنع",
+            fields: [
+                { key: "badge", labelAr: "شارة القسم", labelEn: "Badge", type: "text", bilingual: true, placeholder: "الجودة والامتثال" },
+                { key: "title", labelAr: "العنوان", labelEn: "Title", type: "text", bilingual: true },
+                { key: "subtitle", labelAr: "الوصف", labelEn: "Subtitle", type: "textarea", bilingual: true },
+                {
+                    key: "certs",
+                    labelAr: "شهادة",
+                    labelEn: "Certificate",
+                    type: "list",
+                    bilingual: false,
+                    listFields: [
+                        { key: "name", labelAr: "اسم الشهادة", labelEn: "Certificate Name", type: "text", bilingual: true, placeholder: "ISO 9001" },
+                        { key: "desc", labelAr: "الوصف", labelEn: "Description", type: "text", bilingual: true, placeholder: "إدارة الجودة الشاملة" },
+                        { key: "image", labelAr: "صورة الشهادة", labelEn: "Certificate Image", type: "url", bilingual: false, placeholder: "/images/certs/iso.png" },
+                    ],
+                },
+            ],
+        },
+
+        // ── 12. Testimonials (آراء العملاء) ──
+        {
+            id: "testimonials",
+            title: "آراء العملاء والشركاء",
+            emoji: "💬",
+            description: "اقتباسات وتقييمات العملاء",
+            fields: [
+                { key: "title", labelAr: "عنوان القسم", labelEn: "Section Title", type: "text", bilingual: true, placeholder: "ماذا يقول عملاؤنا" },
+                { key: "subtitle", labelAr: "الوصف", labelEn: "Subtitle", type: "text", bilingual: true },
+                {
+                    key: "items",
+                    labelAr: "رأي عميل",
+                    labelEn: "Testimonial",
+                    type: "list",
+                    bilingual: false,
+                    listFields: [
+                        { key: "name", labelAr: "اسم العميل", labelEn: "Client Name", type: "text", bilingual: true, placeholder: "م. خالد عبد الرحمن" },
+                        { key: "role", labelAr: "المنصب/الشركة", labelEn: "Role/Company", type: "text", bilingual: true, placeholder: "مدير مشتريات — مصنع النجمة" },
+                        { key: "content", labelAr: "نص التقييم", labelEn: "Review Text", type: "textarea", bilingual: true },
+                        { key: "avatar", labelAr: "صورة العميل", labelEn: "Client Photo", type: "url", bilingual: false, placeholder: "/images/clients/avatar.jpg" },
+                    ],
+                },
+            ],
+        },
+
+
+
+        // ── 14. FAQ (الأسئلة الشائعة) ──
+        {
+            id: "faq",
+            title: "الأسئلة الشائعة (FAQ)",
+            emoji: "❓",
+            description: "الأسئلة والأجوبة المتكررة",
+            fields: [
+                { key: "title", labelAr: "عنوان القسم", labelEn: "Section Title", type: "text", bilingual: true, placeholder: "الأسئلة الشائعة" },
+                { key: "subtitle", labelAr: "الوصف", labelEn: "Subtitle", type: "text", bilingual: true },
+                {
+                    key: "items",
+                    labelAr: "سؤال",
+                    labelEn: "Question",
+                    type: "list",
+                    bilingual: false,
+                    listFields: [
+                        { key: "question", labelAr: "السؤال", labelEn: "Question", type: "text", bilingual: true },
+                        { key: "answer", labelAr: "الإجابة", labelEn: "Answer", type: "textarea", bilingual: true },
+                    ],
+                },
+            ],
+        },
+
+        // ── 15. CTA Partnership ──
+        {
+            id: "ctaPartnership",
+            title: "دعوة الشراكة (CTA)",
+            emoji: "🤝",
+            description: "قسم الدعوة للتواصل والشراكة أسفل الصفحة",
+            fields: [
+                { key: "title", labelAr: "العنوان", labelEn: "Title", type: "text", bilingual: true, placeholder: "هل تبحث عن شريك صناعي موثوق؟" },
+                { key: "subtitle", labelAr: "الوصف", labelEn: "Subtitle", type: "textarea", bilingual: true },
+                { key: "ctaPrimary", labelAr: "نص الزر الأساسي", labelEn: "Primary Button", type: "text", bilingual: true, placeholder: "طلب عرض سعر" },
+                { key: "ctaSecondary", labelAr: "نص الزر الثانوي", labelEn: "Secondary Button", type: "text", bilingual: true, placeholder: "تواصل مع فريق المبيعات" },
+            ],
+        },
+
+        // ── 16. Client Logos ──
+        {
+            id: "clientLogos",
+            title: "شركاء النجاح (Client Logos)",
+            emoji: "🏢",
+            description: "أسماء وشعارات الشركاء",
+            fields: [
+                { key: "badge", labelAr: "شارة القسم", labelEn: "Badge", type: "text", bilingual: true, placeholder: "شركاء النجاح" },
+                { key: "titleBefore", labelAr: "نص قبل الرقم", labelEn: "Text Before Number", type: "text", bilingual: true, placeholder: "يثق بنا أكثر من" },
+                { key: "titleCount", labelAr: "الرقم", labelEn: "Count", type: "text", bilingual: false, placeholder: "200+" },
+                { key: "titleAfter", labelAr: "نص بعد الرقم", labelEn: "Text After Number", type: "text", bilingual: true, placeholder: "شريك صناعي" },
+                {
+                    key: "names",
+                    labelAr: "شريك",
+                    labelEn: "Partner",
+                    type: "list",
+                    bilingual: false,
+                    listFields: [
+                        { key: "name", labelAr: "اسم الشريك", labelEn: "Partner Name", type: "text", bilingual: true, placeholder: "مجموعة الصفا الغذائية" },
+                        { key: "logo", labelAr: "شعار الشريك", labelEn: "Logo URL", type: "url", bilingual: false, placeholder: "/images/clients/logo.png" },
+                    ],
+                },
+            ],
+        },
+
+        // ── 17. Footer ──
+        {
+            id: "footer",
+            title: "تذييل الصفحة (Footer)",
+            emoji: "📋",
+            description: "نصوص وبيانات الفوتر",
+            fields: [
+                { key: "logo", labelAr: "رابط الشعار (اللوجو)", labelEn: "Logo URL", type: "url", bilingual: false, placeholder: "/images/logo.png" },
+                { key: "brandName", labelAr: "اسم العلامة التجارية (عربي)", labelEn: "Brand Name (Ar)", type: "text", bilingual: false, placeholder: "مصنع السلام" },
+                { key: "brandEn", labelAr: "اسم العلامة التجارية (إنجليزي)", labelEn: "Brand Name (En)", type: "text", bilingual: false, placeholder: "ELSALAM OILS" },
+                { key: "description", labelAr: "وصف المصنع", labelEn: "Factory Description", type: "textarea", bilingual: true },
+                { key: "address", labelAr: "العنوان", labelEn: "Address", type: "text", bilingual: true, placeholder: "المنطقة الصناعية، المنوفية، مصر" },
+                { key: "phone", labelAr: "رقم الهاتف", labelEn: "Phone", type: "text", bilingual: false, placeholder: "+20 1xx xxx xxxx" },
+                { key: "email", labelAr: "البريد الإلكتروني", labelEn: "Email", type: "text", bilingual: false, placeholder: "info@elsalamoils.com" },
+                { key: "facebook", labelAr: "رابط فيسبوك", labelEn: "Facebook URL", type: "url", bilingual: false, placeholder: "https://facebook.com/..." },
+                { key: "instagram", labelAr: "رابط إنستجرام", labelEn: "Instagram URL", type: "url", bilingual: false, placeholder: "https://instagram.com/..." },
+                { key: "linkedin", labelAr: "رابط لينكد إن", labelEn: "LinkedIn URL", type: "url", bilingual: false, placeholder: "https://linkedin.com/..." },
+                { key: "copyright", labelAr: "نص حقوق النشر", labelEn: "Copyright", type: "text", bilingual: true },
+                { key: "newsletterTitle", labelAr: "عنوان النشرة البريدية", labelEn: "Newsletter Title", type: "text", bilingual: true },
+                { key: "newsletterSubtitle", labelAr: "وصف النشرة", labelEn: "Newsletter Subtitle", type: "text", bilingual: true },
+            ],
+        },
+    ];
