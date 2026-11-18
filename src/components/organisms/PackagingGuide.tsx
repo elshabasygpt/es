@@ -127,7 +127,7 @@ export const PackagingGuide = () => {
                                     
                                     {/* Product Image Section */}
                                     <div className="relative w-full aspect-[4/3] bg-gray-50 overflow-hidden">
-                                        <img 
+                                        <img loading="lazy" decoding="async" 
                                             src={imageSrc} 
                                             alt={pkg.title} 
                                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2000ms] ease-out brightness-95 group-hover:brightness-105"

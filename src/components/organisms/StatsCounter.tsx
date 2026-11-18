@@ -96,10 +96,10 @@ export const StatsCounter = () => {
         <section className="py-24 relative overflow-hidden bg-primary-dark">
             {/* Immersive Background */}
             <div className="absolute inset-0 z-0">
-                <img 
+                <img loading="lazy" decoding="async" 
                     src="https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=2500&auto=format&fit=crop" 
                     alt="Factory Background" 
-                    className="w-full h-full object-cover opacity-10 mix-blend-luminosity grayscale"
+                    className="w-full h-full object-cover opacity-10 grayscale"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-dark via-primary-dark/95 to-[#0f2c1b]/90" />
                 <div className="absolute inset-0 bg-[url('/images/pattern-dots.svg')] opacity-[0.05]" />

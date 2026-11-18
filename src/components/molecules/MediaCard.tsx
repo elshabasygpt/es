@@ -31,6 +31,8 @@ export const MediaCard: React.FC<MediaCardProps> = ({ item, onClick, className }
         >
             <div className="relative aspect-video w-full overflow-hidden bg-surface-light shrink-0">
                 <img
+                    loading="lazy"
+                    decoding="async"
                     src={item.thumbnailUrl}
                     alt={item.title}
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"

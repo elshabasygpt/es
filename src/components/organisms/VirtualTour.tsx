@@ -32,6 +32,8 @@ export const VirtualTour = () => {
             {/* Cinematic Background Image */}
             <div className="absolute inset-0 z-0">
                 <img
+                    loading="lazy"
+                    decoding="async"
                     src={sImage}
                     alt="Factory Interior Virtual Tour"
                     className="w-full h-full object-cover scale-105 opacity-60 group-hover:scale-110 transition-transform duration-[3000ms] ease-out"

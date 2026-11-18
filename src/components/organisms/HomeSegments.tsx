@@ -71,6 +71,8 @@ export const HomeSegments = () => {
                                 <div className="relative h-[200px] lg:h-[220px] 2xl:h-[240px] w-full overflow-hidden bg-slate-100 group-hover:shadow-[inset_0_-10px_20px_rgba(0,0,0,0.05)] transition-shadow duration-500">
                                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                                     <img
+                                        loading="lazy"
+                                        decoding="async"
                                         src={seg.image || "/images/placeholder.svg"}
                                         alt={seg.title}
                                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"

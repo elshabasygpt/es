@@ -60,7 +60,7 @@ export function ProductionClient({ cmsContent = {} }: { cmsContent?: Record<stri
             {/* Immersive Hero Section */}
             <section className="relative min-h-[50vh] pt-20 flex flex-col items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <img 
+                    <img loading="eager" decoding="async" 
                         src={heroBgImage} 
                         alt={heroTitle} 
                         className="w-full h-full object-cover"
@@ -198,7 +198,7 @@ export function ProductionClient({ cmsContent = {} }: { cmsContent?: Record<stri
                                         >
                                             <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-xl bg-slate-200 border-4 border-white group-hover:shadow-2xl group-hover:border-green-50 transition-all duration-500">
                                                 <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/40 to-transparent z-10" />
-                                                <img 
+                                                <img loading="lazy" decoding="async" 
                                                     src={stepImage} 
                                                     alt={stepTitle} 
                                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"

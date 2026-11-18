@@ -128,6 +128,8 @@ export const OurProcess = () => {
                                         <ScrollReveal direction={isEven ? "right" : "left"} delay={0.1}>
                                             <div className="relative rounded-[2rem] overflow-hidden shadow-2xl shadow-green-900/10 aspect-[5/4] md:aspect-[4/3] bg-slate-50 border border-white/50">
                                                 <img
+                                                    loading="lazy"
+                                                    decoding="async"
                                                     src={step.image || "/images/placeholder.svg"}
                                                     alt={locale === 'en' ? step.title_en : step.title_ar}
                                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"

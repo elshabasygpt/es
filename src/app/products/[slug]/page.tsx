@@ -166,6 +166,8 @@ export default function ProductDetailPage() {
                                 transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
                             >
                                 <img
+                                    loading="eager"
+                                    decoding="async"
                                     src={activeImage || product.featured_image || "/images/placeholder.svg"}
                                     alt={title}
                                     className="w-full h-full object-contain filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.15)] mix-blend-multiply cursor-crosshair hover:scale-105 transition-transform duration-500"
@@ -190,7 +192,7 @@ export default function ProductDetailPage() {
                                         onClick={() => setActiveImage(product.featured_image || "/images/placeholder.svg")}
                                         className={cn("w-[65px] h-[65px] sm:w-[75px] sm:h-[75px] rounded-xl bg-white border-2 transition-all cursor-pointer p-1 shrink-0 flex items-center justify-center shadow-sm", (!activeImage || activeImage === product.featured_image) ? "border-green-600 scale-105 shadow-md" : "border-gray-200 hover:border-green-400 opacity-80 hover:opacity-100")}
                                     >
-                                        <img src={product.featured_image || "/images/placeholder.svg"} className="max-w-full max-h-full object-contain mix-blend-multiply" alt="Main" />
+                                        <img loading="lazy" decoding="async" src={product.featured_image || "/images/placeholder.svg"} className="max-w-full max-h-full object-contain mix-blend-multiply" alt="Main" />
                                     </div>
                                     {product.images.map((img, i) => (
                                         <div
@@ -199,7 +201,7 @@ export default function ProductDetailPage() {
                                             onClick={() => setActiveImage(img.url)}
                                             className={cn("w-[65px] h-[65px] sm:w-[75px] sm:h-[75px] rounded-xl bg-white border-2 transition-all cursor-pointer p-1 shrink-0 flex items-center justify-center shadow-sm", activeImage === img.url ? "border-green-600 scale-105 shadow-md" : "border-gray-200 hover:border-green-400 opacity-80 hover:opacity-100")}
                                         >
-                                            <img src={img.url} className="max-w-full max-h-full object-contain mix-blend-multiply" alt={`Gallery ${i}`} />
+                                            <img loading="lazy" decoding="async" src={img.url} className="max-w-full max-h-full object-contain mix-blend-multiply" alt={`Gallery ${i}`} />
                                         </div>
                                     ))}
                                 </div>

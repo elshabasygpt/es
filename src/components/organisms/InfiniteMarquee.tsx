@@ -63,7 +63,7 @@ export const InfiniteMarquee = ({ images, speed = 40, direction = "left" }: Marq
                                     {img.alt}
                                 </span>
                             ) : (
-                                <div className="relative w-full h-full mix-blend-multiply flex items-center justify-center p-6">
+                                <div className="relative w-full h-full flex items-center justify-center p-6">
                                     <Image
                                         src={img.src}
                                         alt={img.alt}

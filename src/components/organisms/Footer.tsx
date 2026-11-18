@@ -105,7 +105,7 @@ export const Footer = () => {
                                     style={{ width: "140px", height: "140px", minWidth: "140px" }}
                                 >
                                     {displayLogoStr ? (
-                                        <img src={displayLogoStr} alt={displayBrand} className="w-full h-full object-contain p-2" />
+                                        <img loading="lazy" decoding="async" src={displayLogoStr} alt={displayBrand} className="w-full h-full object-contain p-2" />
                                     ) : (
                                         <Image
                                             src="/icon.png"

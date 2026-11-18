@@ -63,7 +63,7 @@ export function QualityClient({ cmsContent }: { cmsContent?: Record<string, any>
             <section className="relative pt-40 pb-32 lg:pt-56 lg:pb-48 overflow-hidden bg-slate-950">
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0 z-0">
-                    <img 
+                    <img loading="eager" decoding="async" 
                         src={heroBgImg}
                         alt="Quality Background" 
                         className="w-full h-full object-cover opacity-20 mix-blend-luminosity"
@@ -129,6 +129,8 @@ export function QualityClient({ cmsContent }: { cmsContent?: Record<string, any>
                                 >
                                     {/* Background Image */}
                                     <img
+                                        loading="lazy"
+                                        decoding="async"
                                         src={imgSrc}
                                         alt={checkText}
                                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
@@ -172,6 +174,8 @@ export function QualityClient({ cmsContent }: { cmsContent?: Record<string, any>
                                 <ScrollReveal key={index} delay={index * 0.05}>
                                     <div className="relative aspect-[4/5] md:aspect-square rounded-2xl overflow-hidden shadow-md group border border-slate-200">
                                         <img
+                                            loading="lazy"
+                                            decoding="async"
                                             src={imgSrc}
                                             alt={checkText}
                                             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -219,7 +223,7 @@ export function QualityClient({ cmsContent }: { cmsContent?: Record<string, any>
                         {/* Main large image */}
                         <ScrollReveal delay={0.1} className="md:col-span-2 h-[400px] lg:h-[600px]">
                             <div className="w-full h-full rounded-[3rem] overflow-hidden relative group shadow-lg border border-slate-100">
-                                <img src={labMainImg} alt="Lab Main" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+                                <img loading="lazy" decoding="async" src={labMainImg} alt="Lab Main" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
                                 <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-12 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                                     <div className="w-12 h-1 bg-emerald-500 mb-6 rounded-full" />
@@ -233,14 +237,14 @@ export function QualityClient({ cmsContent }: { cmsContent?: Record<string, any>
                             {/* Top small image */}
                             <ScrollReveal delay={0.2} className="flex-1 min-h-0 h-full">
                                 <div className="w-full h-full rounded-[3rem] overflow-hidden relative group shadow-lg border border-slate-100">
-                                    <img src={labSub1Img} alt="Lab Sub 1" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
+                                    <img loading="lazy" decoding="async" src={labSub1Img} alt="Lab Sub 1" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
                                     <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-slate-900/0 transition-colors duration-500" />
                                 </div>
                             </ScrollReveal>
                             {/* Bottom small image */}
                             <ScrollReveal delay={0.3} className="flex-1 min-h-0 h-full">
                                 <div className="w-full h-full rounded-[3rem] overflow-hidden relative group shadow-lg border border-slate-100">
-                                    <img src={labSub2Img} alt="Lab Sub 2" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
+                                    <img loading="lazy" decoding="async" src={labSub2Img} alt="Lab Sub 2" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
                                     <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-slate-900/0 transition-colors duration-500" />
                                 </div>
                             </ScrollReveal>

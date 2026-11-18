@@ -67,6 +67,8 @@ export const NewsCard: React.FC<NewsCardProps> = ({ item, featured = false, clas
                     <div className="absolute inset-0">
                         {item.featured_image ? (
                             <img
+                                loading="lazy"
+                                decoding="async"
                                 src={item.featured_image}
                                 alt={title}
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms]"
@@ -144,6 +146,8 @@ export const NewsCard: React.FC<NewsCardProps> = ({ item, featured = false, clas
                 <div className="relative h-52 bg-gray-100 overflow-hidden shrink-0">
                     {item.featured_image ? (
                         <img
+                            loading="lazy"
+                            decoding="async"
                             src={item.featured_image}
                             alt={title}
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"

@@ -29,7 +29,7 @@ function StationLogo({ src, alt }: { src: string, alt?: string }) {
             style={{ width: '90px', height: '90px', minWidth: '90px', minHeight: '90px', flexShrink: 0 }}
         >
             {!hasError && imgSrc ? (
-                <img 
+                <img loading="lazy" decoding="async" 
                     src={imgSrc} 
                     alt={alt || "Logo"} 
                     className="w-full h-full object-contain transition-transform duration-300 hover:scale-110" 
@@ -82,6 +82,8 @@ export function AboutPageClient({ cmsContent = {} }: { cmsContent?: Record<strin
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0 opacity-20 mix-blend-overlay">
                     <img
+                        loading="eager"
+                        decoding="async"
                         src={heroBgImage}
                         alt="Background"
                         className="w-full h-full object-cover"
@@ -90,8 +92,8 @@ export function AboutPageClient({ cmsContent = {} }: { cmsContent?: Record<strin
 
                 {/* Animated gradient glows */}
                 <div className="absolute inset-0 opacity-40">
-                    <div className="absolute -top-20 -left-20 w-96 h-96 bg-green-500 rounded-full mix-blend-screen filter blur-[100px] animate-pulse" />
-                    <div className="absolute top-1/2 -right-20 w-80 h-80 bg-emerald-400 rounded-full mix-blend-screen filter blur-[100px] animate-pulse" style={{ animationDelay: "2s" }} />
+                    <div className="absolute -top-20 -left-20 w-96 h-96 bg-green-500 rounded-full mix-blend-screen filter blur-[100px]" />
+                    <div className="absolute top-1/2 -right-20 w-80 h-80 bg-emerald-400 rounded-full mix-blend-screen filter blur-[100px]" style={{ animationDelay: "2s" }} />
                 </div>
 
                 {/* Grid pattern overlay */}
@@ -238,7 +240,7 @@ export function AboutPageClient({ cmsContent = {} }: { cmsContent?: Record<strin
                                 <div className="sticky top-32">
                                     <div className="relative mb-8 aspect-square rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white group">
                                         {cmsContent?.ceo?.image ? (
-                                            <img 
+                                            <img loading="lazy" decoding="async" 
                                                 src={cmsContent.ceo.image} 
                                                 alt={t.about.ceoBio.name} 
                                                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 z-10" 
@@ -478,7 +480,7 @@ export function AboutPageClient({ cmsContent = {} }: { cmsContent?: Record<strin
                                         {/* Large Top Cover Profile Photo */}
                                         <div className="w-full aspect-square relative overflow-hidden bg-gray-50 flex items-center justify-center shrink-0 border-b border-gray-50">
                                             {image ? (
-                                                <img src={image} alt={name} className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" />
+                                                <img loading="lazy" decoding="async" src={image} alt={name} className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" />
                                             ) : (
                                                 <div className="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center group-hover:scale-105 transition-transform duration-700">
                                                     <User className="w-20 h-20 text-gray-300 group-hover:text-green-500 transition-colors" />
@@ -537,7 +539,7 @@ export function AboutPageClient({ cmsContent = {} }: { cmsContent?: Record<strin
                                                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center p-4 text-center">
                                                     <Typography variant="small" className="text-white font-bold">{itemTitle}</Typography>
                                                 </div>
-                                                <img 
+                                                <img loading="lazy" decoding="async" 
                                                     src={itemUrl.startsWith('/uploads') ? `${itemUrl}?v=1` : itemUrl} 
                                                     alt={itemTitle} 
                                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 

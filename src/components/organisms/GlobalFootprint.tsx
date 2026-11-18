@@ -30,7 +30,7 @@ export const GlobalFootprint = () => {
             
             {/* Cinematic Background Map Layer */}
             <div className="absolute inset-0 z-0">
-                <img 
+                <img loading="lazy" decoding="async" 
                     src={sImage} 
                     alt="Global Footprint Background" 
                     className="w-full h-full object-cover opacity-60 mix-blend-screen scale-105"

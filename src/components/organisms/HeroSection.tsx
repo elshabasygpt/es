@@ -113,6 +113,8 @@ export const HeroSection = () => {
                         className="absolute inset-0"
                     >
                         <img
+                            loading="eager"
+                            decoding="async"
                             src={currentSlide.image}
                             alt={currentSlide.titleLine2}
                             className="w-full h-full object-cover origin-center"
@@ -133,8 +135,7 @@ export const HeroSection = () => {
                 />
 
                 {/* Decorative glows */}
-                <div className="absolute inset-0 opacity-[0.03] bg-[url('data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20256%20256%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cfilter%20id%3D%22n%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.9%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22256%22%20height%3D%22256%22%20filter%3D%22url(%23n)%22%2F%3E%3C%2Fsvg%3E')]" />
-                <div className="absolute top-20 left-10 w-72 h-72 bg-green-500/10 rounded-full blur-3xl animate-pulse" />
+                <div className="absolute top-20 left-10 w-72 h-72 bg-green-500/10 rounded-full blur-3xl" />
                 <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
             </div>
 

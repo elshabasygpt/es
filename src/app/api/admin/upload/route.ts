@@ -86,9 +86,25 @@ export async function POST(req: NextRequest) {
         const uploadDir = path.join(process.cwd(), "public", "uploads");
         await mkdir(uploadDir, { recursive: true });
 
+        // Shrink large photos before saving (max 1920px wide, same format) so pages stay light.
+        let output: Buffer = buffer;
+        if (isJPEG || isPNG || isWEBP) {
+            try {
+                const sharp = (await import("sharp")).default;
+                let img = sharp(buffer).rotate().resize({ width: 1920, withoutEnlargement: true });
+                if (isJPEG) img = img.jpeg({ quality: 80, mozjpeg: true, progressive: true });
+                else if (isWEBP) img = img.webp({ quality: 80 });
+                else img = img.png({ palette: true, quality: 90, effort: 10, compressionLevel: 9 });
+                const optimized = await img.toBuffer();
+                if (optimized.length < buffer.length) output = optimized;
+            } catch (e) {
+                console.warn("Image optimization skipped:", e);
+            }
+        }
+
         // Write file
         const filePath = path.join(uploadDir, filename);
-        await writeFile(filePath, buffer);
+        await writeFile(filePath, output);
 
         // Return public URL
         const url = `/uploads/${filename}`;

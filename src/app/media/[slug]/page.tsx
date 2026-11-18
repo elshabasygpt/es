@@ -146,6 +146,8 @@ export default function NewsDetailPage() {
                         ) : article.featured_image ? (
                             <div className="rounded-2xl overflow-hidden shadow-lg">
                                 <img
+                                    loading="eager"
+                                    decoding="async"
                                     src={article.featured_image}
                                     alt={title}
                                     className="w-full h-auto object-cover max-h-[500px]"
@@ -176,6 +178,8 @@ export default function NewsDetailPage() {
                                     {article.gallery.map((img, i) => (
                                         <div key={i} className="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow aspect-square bg-gray-100">
                                             <img
+                                                loading="lazy"
+                                                decoding="async"
                                                 src={img}
                                                 alt={`${title} - Image ${i + 1}`}
                                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

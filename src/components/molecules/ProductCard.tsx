@@ -55,6 +55,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                     {hasImage ? (
                         <div className="relative w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out">
                             <img
+                                loading="lazy"
+                                decoding="async"
                                 src={imageUrl}
                                 alt={title}
                                 className="w-full h-full object-contain drop-shadow-xl"

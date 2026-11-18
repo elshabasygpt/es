@@ -104,6 +104,8 @@ export const Sustainability = () => {
                         <ScrollReveal direction={isRTL ? "left" : "right"}>
                             <div className="relative rounded-[2rem] overflow-hidden aspect-[4/5] shadow-2xl group">
                                 <img
+                                    loading="lazy"
+                                    decoding="async"
                                     src={sImage}
                                     alt="Sustainability"
                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1500ms]"

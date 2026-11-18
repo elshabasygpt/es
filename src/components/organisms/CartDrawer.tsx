@@ -90,7 +90,7 @@ export function CartDrawer() {
                             {items.map((item) => (
                                 <div key={item.id} className="flex gap-4 p-4 bg-white rounded-2xl border border-gray-100 shadow-sm relative group">
                                     <div className="w-28 h-28 bg-gray-50 rounded-2xl p-2 shrink-0 border border-gray-100 flex items-center justify-center overflow-hidden">
-                                        <img src={item.image} alt={locale === "ar" ? item.name_ar : item.name_en} className="w-full h-full object-contain mix-blend-multiply" />
+                                        <img loading="lazy" decoding="async" src={item.image} alt={locale === "ar" ? item.name_ar : item.name_en} className="w-full h-full object-contain mix-blend-multiply" />
                                     </div>
                                     
                                     <div className="flex flex-col flex-1 py-1">

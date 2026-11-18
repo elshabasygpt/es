@@ -339,6 +339,8 @@ function ProductGridCard({ product, t, locale, isRTL, addItem, setCartOpen, rout
 
                 {product.featured_image ? (
                     <img
+                        loading="lazy"
+                        decoding="async"
                         src={product.featured_image}
                         alt={title}
                         className="w-full h-full object-contain filter drop-shadow-xl group-hover:scale-110 transition-transform duration-700 ease-out relative z-10"
