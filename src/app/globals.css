@@ -22,6 +22,18 @@
     }
 }
 
+/* ⚡ Scroll performance on phones: backdrop-filter and large blurred blobs are re-rasterized
+   while scrolling and cause visible lag on mid-range devices. */
+@media (max-width: 767px) {
+    [class*="backdrop-blur"] {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+    }
+    .absolute.rounded-full:is(.blur-xl, .blur-2xl, .blur-3xl, [class^="blur-["], [class*=" blur-["]) {
+        display: none !important;
+    }
+}
+
 @layer utilities {
     .radius-section-tl-br {
         border-top-left-radius: 48px;
@@ -195,4 +207,4 @@ button, a {
     .mobile-bottom-offset {
         padding-bottom: calc(64px + env(safe-area-inset-bottom));
     }
-}
+}

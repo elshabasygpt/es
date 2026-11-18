@@ -132,7 +132,7 @@ export const Navbar = () => {
         <>
             <header className={cn(
                 "fixed top-0 w-full transition-all duration-500",
-                forceSolidBar ? "bg-white/95 backdrop-blur-xl shadow-sm border-b border-gray-200 py-1" : "pt-2 sm:pt-3 px-2 sm:px-4 lg:px-6",
+                forceSolidBar ? "bg-white/[0.97] shadow-sm border-b border-gray-200 py-1" : "pt-2 sm:pt-3 px-2 sm:px-4 lg:px-6",
                 isOpen ? "z-[100]" : "z-50"
             )}>
                 <Container className="max-w-[1480px]">

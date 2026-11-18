@@ -14,10 +14,10 @@ interface ScrollRevealProps {
 
 const getVariants = (direction: string): Variants => {
     const offsets: Record<string, { x: number; y: number }> = {
-        up: { x: 0, y: 40 },
-        down: { x: 0, y: -40 },
-        left: { x: 40, y: 0 },
-        right: { x: -40, y: 0 },
+        up: { x: 0, y: 24 },
+        down: { x: 0, y: -24 },
+        left: { x: 24, y: 0 },
+        right: { x: -24, y: 0 },
     };
     const { x, y } = offsets[direction] || offsets.up;
 
@@ -31,7 +31,7 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
     children,
     className,
     delay = 0,
-    duration = 0.6,
+    duration = 0.45,
     direction = "up",
     once = true,
 }) => {
@@ -40,7 +40,7 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
             className={className}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once, margin: "-80px" }}
+            viewport={{ once, margin: "0px 0px -40px 0px" }}
             variants={getVariants(direction)}
             transition={{
                 duration,
