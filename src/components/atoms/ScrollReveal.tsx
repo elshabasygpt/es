@@ -14,10 +14,10 @@ interface ScrollRevealProps {
 
 const getVariants = (direction: string): Variants => {
     const offsets: Record<string, { x: number; y: number }> = {
-        up: { x: 0, y: 24 },
-        down: { x: 0, y: -24 },
-        left: { x: 24, y: 0 },
-        right: { x: -24, y: 0 },
+        up: { x: 0, y: 12 },
+        down: { x: 0, y: -12 },
+        left: { x: 12, y: 0 },
+        right: { x: -12, y: 0 },
     };
     const { x, y } = offsets[direction] || offsets.up;
 
@@ -31,7 +31,7 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
     children,
     className,
     delay = 0,
-    duration = 0.45,
+    duration = 0.35,
     direction = "up",
     once = true,
 }) => {
@@ -43,8 +43,8 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
             viewport={{ once, margin: "0px 0px -40px 0px" }}
             variants={getVariants(direction)}
             transition={{
-                duration,
-                delay,
+                duration: Math.min(duration, 0.4),
+                delay: Math.min(delay, 0.15),
                 ease: [0.25, 0.1, 0.25, 1],
             }}
         >
@@ -63,7 +63,7 @@ interface StaggerContainerProps {
 export const StaggerContainer: React.FC<StaggerContainerProps> = ({
     children,
     className,
-    staggerDelay = 0.1,
+    staggerDelay = 0.05,
     once = true,
 }) => {
     return (
@@ -71,12 +71,12 @@ export const StaggerContainer: React.FC<StaggerContainerProps> = ({
             className={className}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once, margin: "-60px" }}
+            viewport={{ once, margin: "0px 0px -40px 0px" }}
             variants={{
                 hidden: {},
                 visible: {
                     transition: {
-                        staggerChildren: staggerDelay,
+                        staggerChildren: Math.min(staggerDelay, 0.06),
                     },
                 },
             }}
@@ -99,11 +99,11 @@ export const StaggerItem: React.FC<StaggerItemProps> = ({
         <motion.div
             className={className}
             variants={{
-                hidden: { opacity: 0, y: 30 },
+                hidden: { opacity: 0, y: 12 },
                 visible: {
                     opacity: 1,
                     y: 0,
-                    transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] },
+                    transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] },
                 },
             }}
         >

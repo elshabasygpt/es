@@ -22,12 +22,24 @@
     }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 /* ⚡ Scroll performance on phones: backdrop-filter and large blurred blobs are re-rasterized
    while scrolling and cause visible lag on mid-range devices. */
 @media (max-width: 767px) {
     [class*="backdrop-blur"] {
         -webkit-backdrop-filter: none !important;
         backdrop-filter: none !important;
+    }
+    .animate-pulse, .animate-bounce, .animate-ping, .animate-bounce-slow, .animate-pulse-ring {
+        animation: none !important;
     }
     .absolute.rounded-full:is(.blur-xl, .blur-2xl, .blur-3xl, [class^="blur-["], [class*=" blur-["]) {
         display: none !important;

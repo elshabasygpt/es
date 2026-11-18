@@ -85,9 +85,9 @@ export const HeroSection = () => {
     const currentSlide = slides[activeTab];
 
     const slideVariants = {
-        enter: (dir: number) => ({ x: dir > 0 ? 1000 : -1000, opacity: 0, scale: 1.05 }),
-        center: { zIndex: 1, x: 0, opacity: 1, scale: 1 },
-        exit:   (dir: number) => ({ zIndex: 0, x: dir < 0 ? 1000 : -1000, opacity: 0, scale: 0.95 }),
+        enter: () => ({ opacity: 0 }),
+        center: { zIndex: 1, opacity: 1 },
+        exit:   () => ({ zIndex: 0, opacity: 0 }),
     };
 
     const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
@@ -105,11 +105,7 @@ export const HeroSection = () => {
                         initial="enter"
                         animate="center"
                         exit="exit"
-                        transition={{
-                            x: { type: "spring", stiffness: 300, damping: 30 },
-                            opacity: { duration: 0.4 },
-                            scale:   { duration: 0.5 },
-                        }}
+                        transition={{ opacity: { duration: 0.6, ease: "easeInOut" } }}
                         className="absolute inset-0"
                     >
                         <img

@@ -5,6 +5,7 @@ import { QuickContactWidget } from '@/components/organisms/QuickContactWidget'
 import { BackToTop } from '@/components/organisms/BackToTop'
 import { MobileBottomNav } from '@/components/organisms/MobileBottomNav'
 import { LanguageProvider } from '@/lib/i18n-context'
+import { MotionProvider } from '@/components/providers/MotionProvider'
 import { SettingsProvider } from '@/lib/settings-context'
 import { Toaster } from 'react-hot-toast'
 import Script from 'next/script'
@@ -148,11 +149,13 @@ export default async function RootLayout({
                 )}
                 <SettingsProvider settings={settings}>
                     <LanguageProvider>
+                      <MotionProvider>
                         <Toaster position="top-center" reverseOrder={false} />
                         {children}
                         <QuickContactWidget />
                         <BackToTop />
                         <MobileBottomNav />
+                      </MotionProvider>
                     </LanguageProvider>
                 </SettingsProvider>
             </body>
