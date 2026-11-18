@@ -1,7 +1,7 @@
 // Use relative URL so it works on any port (dev: 3000/3001, prod: 80/443)
 const API_BASE = typeof window !== "undefined"
     ? `${window.location.origin}/api/public`
-    : `${process.env.NEXT_PUBLIC_API_URL || process.env.NEXTAUTH_URL || "http://localhost:3001"}/api/public`;
+    : (process.env.NEXT_PUBLIC_API_URL || `${process.env.NEXTAUTH_URL || "http://localhost:3001"}/api/public`);
 
 export interface ProductCategory {
     id: number;
