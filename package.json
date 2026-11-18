@@ -6,7 +6,7 @@
         "dev": "next dev",
         "build": "NEXT_DISABLE_ESLINT=1 NEXT_TELEMETRY_DISABLED=1 NODE_OPTIONS=--max-old-space-size=4096 next build",
         "start": "next start",
-        "deploy": "git pull origin main && npm install --legacy-peer-deps && npx prisma generate && npx prisma migrate deploy && rm -rf .next && npm run build && pm2 restart all && pm2 save"
+        "deploy": "bash scripts/deploy.sh"
     },
     "dependencies": {
         "@auth/prisma-adapter": "^2.11.1",

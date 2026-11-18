@@ -60,14 +60,18 @@ jobs:
     needs: build-and-test
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
+    concurrency:
+      group: production-deploy
+      cancel-in-progress: false
 
     steps:
-      - name: Deploy via SSH
+      - name: Deploy to Shaklab AI VPS via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: ${{ secrets.SHAKLAB_SSH_HOST }}
+          username: ${{ secrets.SHAKLAB_SSH_USERNAME }}
+          key: ${{ secrets.SHAKLAB_SSH_PRIVATE_KEY }}
+          command_timeout: 30m
           script: |
             cd /var/www/elsalamoil
-            npm run deploy
+            bash scripts/deploy.sh
